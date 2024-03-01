@@ -12,8 +12,6 @@ RUN apt update
 RUN apt install php7.4 php7.4-mysql -y
 RUN apt autoremove -qy
 
-COPY ./test.php /var/www/html/test.php
-
 WORKDIR /var/www/html/
 
 EXPOSE 80
