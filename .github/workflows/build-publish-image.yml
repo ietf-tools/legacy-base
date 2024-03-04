@@ -47,3 +47,14 @@ jobs:
         build-args: |
           VERSION=${{ steps.semver.outputs.nextStrict }}
         tags: ghcr.io/${{ github.repository }}:${{ steps.semver.outputs.nextStrict }}, ghcr.io/${{ github.repository }}:latest
+
+    - name: Create Release
+      uses: ncipollo/release-action@v1.13.0
+      with:
+        allowUpdates: true
+        makeLatest: true
+        draft: false
+        tag: ${{ steps.semver.outputs.nextStrict }}
+        name: ${{ steps.semver.outputs.nextStrict }}
+        body: ${{ steps.changelog.outputs.changes }}
+        token: ${{ secrets.GITHUB_TOKEN }}
