@@ -9,7 +9,7 @@ RUN apt update && apt upgrade -y
 RUN apt install software-properties-common ca-certificates lsb-release apt-transport-https apache2 -y
 RUN add-apt-repository ppa:ondrej/php -y
 RUN apt update
-RUN apt install php7.4 php7.4-mysql -y
+RUN apt install php7.4 php7.4-intl php7.4-mbstring php7.4-mysql php7.4-xml -y
 RUN apt autoremove -qy
 
 WORKDIR /var/www/html/
