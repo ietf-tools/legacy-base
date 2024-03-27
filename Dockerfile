@@ -12,8 +12,13 @@ RUN apt update
 RUN apt install php7.4 php7.4-intl php7.4-mbstring php7.4-mysql php7.4-xml -y
 RUN apt autoremove -qy
 
-WORKDIR /var/www/html/
-
 EXPOSE 80
 
+RUN groupadd -r www && useradd -r --create-home -g www www
+RUN echo "User www" >> /etc/apache2/apache2.conf
+RUN mkdir -p /var/run/apache2 /var/log/apache2
+RUN chown -R www:www /var/log/apache2/ /var/run/apache2/ /var/www/html/
+
+USER www
+WORKDIR /var/www/html/
 CMD ["apache2ctl", "-D", "FOREGROUND"]
