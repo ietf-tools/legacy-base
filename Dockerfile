@@ -12,6 +12,8 @@ RUN apt update
 RUN apt install php7.4 php7.4-intl php7.4-mbstring php7.4-mysql php7.4-xml -y
 RUN apt autoremove -qy
 
+RUN a2enmod rewrite
+
 EXPOSE 80
 
 RUN groupadd -r www && useradd -r --create-home -g www www
