@@ -14,7 +14,10 @@ RUN apt autoremove -qy
 
 RUN a2enmod rewrite
 
-EXPOSE 80
+COPY ./ports.conf /etc/apache2/ports.conf
+COPY ./sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+EXPOSE 8080
 
 RUN groupadd -r www && useradd -r --create-home -g www www
 RUN echo "User www" >> /etc/apache2/apache2.conf
